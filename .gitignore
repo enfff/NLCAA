@@ -1,0 +1,9 @@
+*.slxc
+*2014.slx
+*/slprj
+*.asv
+*.slx.*
+
+.DS_Store
+
+_MACOSX

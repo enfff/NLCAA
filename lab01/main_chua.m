@@ -2,6 +2,8 @@ clear
 close all
 clc
 
+jacobian
+
 syms x [3 1] real
 syms u real
 
