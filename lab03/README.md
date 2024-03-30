@@ -17,7 +17,9 @@ The simulink schematics is
 
 Due to the system definitions, the only parameters that need tuning were $k_1$ and $k_2$.
 - Choosing them as $k_1=20, k_2=5$ I obtained the following results:
+
 ![te2](../images/lab03_trackingerror_k1_20_k2_5.png)
 
 - Choosing them as $k_1=1, k_2=1$ I obtained the following results:
+
 ![te1](../images/lab03_trackingerror_k1_1_k2_1.png)
