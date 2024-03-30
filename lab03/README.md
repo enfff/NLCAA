@@ -8,7 +8,7 @@ $$v = r^{(\gamma)} + k_\gamma \tilde \mu_\gamma + \cdots + k_2 \tilde \mu_2 + k_
 
 Where 
 - The vector $\tilde \mu = (\tilde \mu_1, \cdots, \tilde \mu_\gamma) \doteq (\tilde y, \dot {\tilde y}, \cdots, {\tilde y}^{(\gamma -1)})$ where $\tilde y$ is the tracking error.
-- $\bold s$ is the sliding window, defined as $s(x, t) \doteq \tilde \mu_\gamma + k_\gamma \tilde \mu_{\gamma-1} + \cdots + k_2 \tilde \mu_1 $
+- **s** is the sliding window, defined as $s(x, t) \doteq \tilde \mu_\gamma + k_\gamma \tilde \mu_{\gamma-1} + \cdots + k_2 \tilde \mu_1 $
 - $\eta$ is a coefficient parameter, set in this case to $1$
 
 The simulink schematics is
