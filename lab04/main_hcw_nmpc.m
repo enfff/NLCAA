@@ -1,4 +1,4 @@
-clear all
+clear
 close all
 clc
 
@@ -9,17 +9,20 @@ RE=6.38e6;
 a=RE+400e3;
 w=sqrt(MU/a^3);
 
-A= [0 0 0 1 0 0
-    0 0 0 0 1 0
-    0 0 0 0 0 1
-   3*w^2 0 0 0 2*w 0
-   0 0 0 -2*w 0 0
-   0 0 -w^2 0 0 0];
-eig(A)
+A = [
+    0	    0	0	    1	    0	0
+    0	    0	0	    0	    1	0
+    0	    0	0	    0	    0	1
+    3*w^2	0	0	    0	    2*w	0
+    0	    0	0	    -2*w	0	0
+    0	    0	-w^2	0	    0	0
+];
+
+% eig(A)
 
 B=[zeros(3);eye(3)];
 
-H=ss(A,B,eye(6),zeros(6,3));
+LTI_system = ss(A,B,eye(6),zeros(6,3)); % init
 
 %% NMPC design
 
@@ -35,34 +38,37 @@ par.lb=-1*ones(3,1);
 par.ub=1*ones(3,1);
 
 K=nmpc_design_st(par);
-%return
 
 %% Simulation initialization
 
-% Reference
+% % Reference
 r=[20 0 0 0 0 0]';
-
-x0=[-500;0;0;0;0;0];
-tfin=1000;
-
-open('sim_hcw_nmpc.slx')
-%return
+% 
+% x0=[-500 0 0 0 0 0]';
+% tfin=1000;
+% 
+% sim('sim_hcw_nmpc.slx')
 
 %% Simulation and 3D figure
 
 close all
 fs=18;
 
-figure('position',[400 200 500 400],'color','w')
+% figure('position',[400 200 500 400],'color','w')
 grid, hold on
-plot3(0,0,0,'dk','markersize',8)
 
-for i=1%1:5
+plot3(20,0,0,'dk','markersize',8) % Target destination
+
+tfin=2000;
+
+for i=1:5
     
+    clear Y
+
     if i==1
-        x0=[-500;0;0;0;0;0];
+        x0=[-500 0 0 0 0 0]';
     else
-        x0=[500*randn(3,1);0.01*randn(3,1)];
+        x0=[500*randn(); 5*randn(5,1)]
     end
     
     sim('sim_hcw_nmpc.slx')
@@ -102,18 +108,3 @@ grid, box on, hold on
 plot(U.Time,U.Data,'linewidth',1.2)
 xlabel('time [s]','interpreter','latex','fontsize',fs)
 ylabel('$u$ [m/s$^2$]','interpreter','latex','fontsize',fs)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
