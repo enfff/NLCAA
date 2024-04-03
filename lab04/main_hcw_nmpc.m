@@ -54,11 +54,6 @@ sim('sim_hcw_nmpc.slx')
 close all
 fs=18;
 
-% figure('position',[400 200 500 400],'color','w')
-% grid, hold on
-
-% plot3(20,0,0,'dk','markersize',8) % Target destination
-
 tfin=2000;
 
 for i=1:5
@@ -85,38 +80,9 @@ for i=1:5
 
     hold on, plot(Y.Data(:,1),Y.Data(:,2),'linewidth',1.2)
 
-    
-
-
-%     sim('sim_hcw_nmpc.slx')
-    %return
-    
-%     figure(1)
-%     plot3(Y.Data(:,1),Y.Data(:,2),Y.Data(:,3),'linewidth',1.2)
-%     xlabel('$x_1$ [m]','interpreter','latex','fontsize',fs)
-%     ylabel('$x_2$ [m]','interpreter','latex','fontsize',fs)
-%     zlabel('$x_3$ [m]','interpreter','latex','fontsize',fs)
-%     view(10,40)
-    
 end
 
-%return
-
-%% Other figures
-
-% planet + orbit
-
-figure('color','w')
-grid, hold on
-plot(0,0,'dk','markersize',8)
-circle(0,0,10,'b',1) 
-
-plot(Y.Data(:,1),Y.Data(:,2),'linewidth',1.2)
-xlabel('$x_1$ [m]','interpreter','latex','fontsize',fs)
-ylabel('$x_2$ [m]','interpreter','latex','fontsize',fs)
-ylim([-400 400])
-
-%% 
+%% Plot for command effort
 
 figure('position',[50 100 500 400],'color','w')
 subplot(2,1,1)  
