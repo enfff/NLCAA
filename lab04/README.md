@@ -14,17 +14,21 @@ Both the command effort and state respect the given constraints
 
 ![command_constraint](../images/lab04_command_costraint.png)
 
-A bunch of other tests have been running, randomizing the initial conditions, which for this particular test the columns of the following matrix. $[x_1, x_2, x_3] \doteq [x, y, z]$
+To get more readable results, I ran the experiment with multiple initial conditions (the columns of the matrix below), and printed the first two state variables $x_1$, $x_2$ in a plane, including the planet orbit. I also changed the reference value to $[10, 0, 0, 0, 0 ,0]$
 
-``` matlab
- -176.9250	-666.8390	-875.1062   -1000.00
-   -4.1179	5.6375		-1.4283     4.803
-   -7.8853	1.7509		-4.1568     2.601
-    2.5399	-1.4953		-4.8960     -1.024
-    1.4099	0.1144		-5.7820     -2.117
-    0.1674	-1.3100		-2.6678     -4.003
+``` MATLAB
+  268.8336  -216.7960 362.7021 704.5172
+  9.1694    1.7131    -0.3153  7.0860
+  -11.2942  17.8920   3.5737   3.3575
+  4.3109    13.8472   -1.0248  -6.0374
+  1.5938    -6.7494   -0.6207  3.5862
+  -6.5384    15.1746  7.4485   8.1512
 ```
 
-The diamond is the reference position.
+This is the full trajectory of the first two variables
 
-![random_inits](../images/lab04_diffinits.png)
+![whole trajectory](../images/lab04_whole_trajectory.png)
+
+... and here's a messy close-up shows the controller successfully reached the reference value
+
+![closeup](../images/lab04_closeup.png)

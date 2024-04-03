@@ -42,12 +42,12 @@ K=nmpc_design_st(par);
 %% Simulation initialization
 
 % % Reference
-r=[20 0 0 0 0 0]';
-% 
-% x0=[-500 0 0 0 0 0]';
-% tfin=1000;
-% 
-% sim('sim_hcw_nmpc.slx')
+r=[5 0 0 0 0 0]';
+x0=[-500 0 0 0 0 0]';
+
+tfin=1000;
+
+sim('sim_hcw_nmpc.slx')
 
 %% Simulation and 3D figure
 
@@ -55,9 +55,9 @@ close all
 fs=18;
 
 % figure('position',[400 200 500 400],'color','w')
-grid, hold on
+% grid, hold on
 
-plot3(20,0,0,'dk','markersize',8) % Target destination
+% plot3(20,0,0,'dk','markersize',8) % Target destination
 
 tfin=2000;
 
@@ -67,19 +67,36 @@ for i=1:5
 
     if i==1
         x0=[-500 0 0 0 0 0]';
+
+        figure('color','w')
+        axis equal
+        grid, hold on
+        plot(0,0,'dk','markersize',8)
+        circle(0,0,10,'b',1) 
+
+        xlabel('$x_1$ [m]','interpreter','latex','fontsize',fs)
+        ylabel('$x_2$ [m]','interpreter','latex','fontsize',fs)
+        ylim([-400 400])
     else
         x0=[500*randn(); 5*randn(5,1)]
     end
     
     sim('sim_hcw_nmpc.slx')
+
+    hold on, plot(Y.Data(:,1),Y.Data(:,2),'linewidth',1.2)
+
+    
+
+
+%     sim('sim_hcw_nmpc.slx')
     %return
     
-    figure(1)
-    plot3(Y.Data(:,1),Y.Data(:,2),Y.Data(:,3),'linewidth',1.2)
-    xlabel('$x_1$ [m]','interpreter','latex','fontsize',fs)
-    ylabel('$x_2$ [m]','interpreter','latex','fontsize',fs)
-    zlabel('$x_3$ [m]','interpreter','latex','fontsize',fs)
-    view(10,40)
+%     figure(1)
+%     plot3(Y.Data(:,1),Y.Data(:,2),Y.Data(:,3),'linewidth',1.2)
+%     xlabel('$x_1$ [m]','interpreter','latex','fontsize',fs)
+%     ylabel('$x_2$ [m]','interpreter','latex','fontsize',fs)
+%     zlabel('$x_3$ [m]','interpreter','latex','fontsize',fs)
+%     view(10,40)
     
 end
 
@@ -87,17 +104,22 @@ end
 
 %% Other figures
 
+% planet + orbit
+
 figure('color','w')
 grid, hold on
 plot(0,0,'dk','markersize',8)
-circle(0,0,10,'b',1)
-plot(Y.Data(:,1),Y.Data(:,2),'r','linewidth',1.2)
+circle(0,0,10,'b',1) 
+
+plot(Y.Data(:,1),Y.Data(:,2),'linewidth',1.2)
 xlabel('$x_1$ [m]','interpreter','latex','fontsize',fs)
 ylabel('$x_2$ [m]','interpreter','latex','fontsize',fs)
 ylim([-400 400])
 
+%% 
+
 figure('position',[50 100 500 400],'color','w')
-subplot(2,1,1)
+subplot(2,1,1)  
 grid, box on, hold on
 plot(Y.Time,Y.Data,'linewidth',1.2)
 ylabel('position [m]','interpreter','latex','fontsize',fs)
