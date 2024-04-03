@@ -1,35 +1,36 @@
-clear all 
+clear
 close all 
 clc
 
 %% Parameters
 global MU RE ve
 MU=4e5;
-RE=6371;
+RE=6371; %km
 ve=15;
 m0=30e3;
 
 %% NMPC Design
 
-par.model=@model_launch;
+par.model = @model_launch;
 par.n=7;
 par.Ts=50;
 par.Tp=450;
 par.R=0.1*eye(3);
 par.P=diag([1e2,1e6*ones(1,4)]);
 par.Q=par.P;
-par.tol=[5;0.01*ones(4,1)];
+par.tol=[5; 0.01*ones(4,1)];
 
-K=nmpc_design_st(par)
-%return
+K=nmpc_design_st(par);
 
 % Reference
-ar=RE+500;
-er=[0;0;0];
-cir=1;
-yr=[ar;er;cir];
+ar = RE + 500;
+er = [0 0 0]';
+cir = 1;
+yr = [ar; er; cir];
+% Semimajor axis
+% eccentricity
+% Inclination
 
-%return
 %% Simulation 
 
 % Initial conditions
@@ -40,7 +41,7 @@ u0=[0;0;0];
 Tfin=2*60*60;
 st_size=1;
 
-open('sim_orb_ctrl_1')
+open('sim_orb_ctrl')
 orbit_animation(x0,[0,90],7.5e3)
 %return
 
@@ -48,9 +49,8 @@ orbit_animation(x0,[0,90],7.5e3)
 xlim([5.8e3 6.8e3])
 ylim([-1e3 3e3])
 %pause
-%return
 
-sim('sim_orb_ctrl_1')
+sim('sim_orb_ctrl')
 
 %% plot
 %close all
@@ -58,4 +58,3 @@ sim('sim_orb_ctrl_1')
 i1=1;
 i2=1;
 orbit_plot
-
