@@ -4,6 +4,8 @@
 *.asv
 *.slx.*
 
+lab06/
+
 .DS_Store
 
 _MACOSX
